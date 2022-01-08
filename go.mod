@@ -1,4 +1,4 @@
-module cj.rs/telegram-tee
+module github.com/lukas016/telegram-client
 
 go 1.17
 

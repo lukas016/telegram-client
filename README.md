@@ -11,7 +11,8 @@ end_insert -->
 # Telegram Tee
 <!-- end_remove -->
 
-Simple cli tool to send stdin to any Telegram chat, through a bot. It’s a bit like `tee`, but for telegram.
+**Forked from https://github.com/cljoly/telegram-tee** \
+Simple cli tool to send html formatted messages from stdin to any Telegram chat, through a bot. 
 
 ## Getting started
 
@@ -19,27 +20,28 @@ Simple cli tool to send stdin to any Telegram chat, through a bot. It’s a bit 
 
 First, install the tool with
 ``` bash
-go install cj.rs/telegram-tee@latest
+go install github.com/lukas016/telegram-client
 ```
 
 Then, you need to control a bot. Set the environment variable `TLGCLI_TOKEN` to
 the token of the bot that will write stdin to a chat for you. You may want to [create a new bot](https://core.telegram.org/bots#3-how-do-i-create-a-bot) or use an existing one.
 
 ### Use
-
-Then, you need to get the chat ID of the conversation to which you want to send stdin. Just run
+Simple input
 ``` bash
-telegram-tee
+echo "<strong>Hi</strong>" | telegram-client <chatID> ...
 ```
-and write with Telegram to your bot. It will reply with the current chatID.
 
-You can then do
+Multiline input
 ``` bash
-echo Hi | telegram-tee <chatID>
+printf "<string>Hi</strong>\nHow are you?" | telegram-client <chatID> ...
+```
+or
+``` bash
+telegram-client <chatID> ... << EOF
+<string>Hi</strong>
+How are you?
+EOF
 ```
 
 You can even send to several chatID at the same time.
-
-## TODO
-
-- [ ] Make stdout usable like tee
